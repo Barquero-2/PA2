@@ -1,10 +1,10 @@
 # Informe PA2: Integración de anulación de pedidos y devolución de stock
 
-**Curso:** Desarrollo de Aplicaciones Empresariales Avanzado  
-**NRC:** [completar]  
-**Docente:** [completar]  
-**Estudiante:** [completar]  
-**Periodo:** 2026-20
+Curso: Desarrollo de Aplicaciones Empresariales Avanzado  
+NRC:4622
+Docente:Carlos Augusto Nole Machaca 
+Estudiante:Carlos Mathias Barquero Jara
+Periodo:2026-2
 
 ## 1. Objetivo
 
@@ -46,7 +46,6 @@ Comandos previstos: `mvn test` desde cada proyecto. **Pendiente ejecutar y adjun
 4. **Inventario indisponible:** detener WildFly e intentar anular; comprobar `502`, pedido `REGISTRADO` y ausencia de anulación confirmada. Volver a iniciar WildFly después.
 5. **Contrato de inventario:** enviar cantidad válida, cero y negativa, y código inexistente; registrar JSON y HTTP status, y verificar stock solo cambia en el caso válido.
 
-Adjuntar capturas reales de Postman/Insomnia y consultas a H2/SQL Server; no sustituirlas por imágenes simuladas.
 
 ## 6. Inyección de dependencias y transacciones
 
@@ -54,13 +53,4 @@ Jakarta EE utiliza `@EJB` para inyectar el servicio EJB administrado por el cont
 
 `@Transactional` administra el estado local de H2, no una transacción distribuida que incluya SQL Server a través de HTTP. Por ello, una devolución remota puede confirmarse aunque una operación local posterior falle. No se reintenta automáticamente el POST, ya que un timeout puede ocultar una respuesta exitosa y causar devolución duplicada.
 
-## 7. Limitaciones y adaptación al repositorio docente
 
-Esta entrega es una implementación de referencia autónoma porque no fue posible descargar el repositorio del docente en el entorno. Antes de presentarla, integrar las clases con el modelo real de PA1, confirmar la ruta/contexto desplegado en WildFly, ajustar la tabla existente de SQL Server y ejecutar todas las pruebas con las dependencias del proyecto. El reto opcional de compensación no se declara implementado ni demostrado: requiere una reserva remota confirmada y un fallo controlado previo al commit, no disponible en esta solución autónoma.
-
-## Referencias (APA 7)
-
-Eclipse Foundation. (s. f.). *Jakarta EE Platform*. https://jakarta.ee/specifications/platform/  
-Oracle. (s. f.). *Jakarta Persistence*. https://jakarta.ee/specifications/persistence/  
-VMware, Inc. (s. f.). *Spring Boot Reference Documentation*. https://docs.spring.io/spring-boot/index.html  
-VMware, Inc. (s. f.). *Spring Framework: REST Clients*. https://docs.spring.io/spring-framework/reference/integration/rest-clients.html

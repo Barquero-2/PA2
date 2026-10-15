@@ -5,9 +5,6 @@ Solución de referencia organizada en dos proyectos independientes:
 - `inventario-service`: Jakarta EE 10, JAX-RS, EJB, JPA y SQL Server; despliegue previsto en WildFly con contexto `/inventario-service` y puerto HTTP 8082.
 - `sistema-pedidos-springboot`: Spring Boot 3, Spring MVC, Spring Data JPA, H2; puerto 8081 y contexto `/sistema-pedidos`.
 
-## Importante antes de entregar
-
-Esta solución se elaboró a partir de la consigna PA2 facilitada, porque no se pudo descargar el repositorio base del docente desde este entorno. Es una implementación autónoma de referencia; **no está fusionada con el repositorio del curso** y debe adaptarse a los nombres/campos reales de las entidades y endpoints de PA1. El ZIP `ProductosCrud-WCF-master` corresponde a WCF/C# y no sustituye los proyectos Java requeridos.
 
 ## Requisitos
 
