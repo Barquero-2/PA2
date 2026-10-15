@@ -1,0 +1,32 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad="0.25"; nodesep="0.35"; ranksep="0.6";
+  node [shape=box, style="rounded,filled", fillcolor="#f5f7fb", color="#51627a", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+  edge [fontname="Arial", fontsize=9, color="#51627a"];
+  client [label="Postman / cliente HTTP"];
+  ctrl [label="AnulacionPedidoController"];
+  service [label="AnulacionPedidoServiceImpl"];
+  repo [label="PedidoRepository +
+AnulacionPedidoRepository"];
+  h2 [shape=cylinder, label="H2
+pedidos + anulaciones", fillcolor="#e8f5e9"];
+  http [label="DevolucionStockRestClient
+RestClient + DTOs"];
+  resource [label="ProductoResource
+JAX-RS"];
+  ejb [label="InventarioService
+@Stateless"];
+  entity [label="ProductoInventario
+JPA + @Version"];
+  sql [shape=cylinder, label="SQL Server
+InventarioDB", fillcolor="#e8f5e9"];
+  client -> ctrl [label="POST anulación"];
+  ctrl -> service;
+  service -> repo;
+  repo -> h2;
+  service -> http [label="POST JSON
+no retry"];
+  http -> resource [label="HTTP :8082"];
+  resource -> ejb;
+  ejb -> entity;
+  entity -> sql;
+}

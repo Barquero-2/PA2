@@ -1,0 +1,18 @@
+{
+  "info": {
+    "name": "PA2 - Anulación y devolución de stock",
+    "description": "Colección de solicitudes para ejecutar los escenarios PA2. Ajusta pedidoId al ID devuelto al crear el pedido.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {"name":"Crear pedido de prueba","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"productoCodigo\": \"P001\",\n  \"cantidad\": 2\n}"},"url":"http://localhost:8081/sistema-pedidos/api/v1/pedidos"}},
+    {"name":"Caso 1 - Anulación correcta","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"pedidoId\": 1,\n  \"motivo\": \"Solicitud del cliente\"\n}"},"url":"http://localhost:8081/sistema-pedidos/api/v1/anulaciones"}},
+    {"name":"Caso 2 - Anulación duplicada (esperar 409)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"pedidoId\": 1,\n  \"motivo\": \"Segundo intento\"\n}"},"url":"http://localhost:8081/sistema-pedidos/api/v1/anulaciones"}},
+    {"name":"Caso 3 - Pedido inexistente (esperar 404)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"pedidoId\": 99999,\n  \"motivo\": \"No existe\"\n}"},"url":"http://localhost:8081/sistema-pedidos/api/v1/anulaciones"}},
+    {"name":"Caso 4 - Inventario no disponible (detener WildFly antes)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"pedidoId\": 1,\n  \"motivo\": \"Prueba de indisponibilidad\"\n}"},"url":"http://localhost:8081/sistema-pedidos/api/v1/anulaciones"}},
+    {"name":"Caso 5 - Devolución válida directa","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"cantidad\": 2\n}"},"url":"http://localhost:8082/inventario-service/api/inventario/productos/codigo/P001/devoluciones"}},
+    {"name":"Caso 5 - Cantidad cero (esperar 400)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"cantidad\": 0\n}"},"url":"http://localhost:8082/inventario-service/api/inventario/productos/codigo/P001/devoluciones"}},
+    {"name":"Listar anulaciones","request":{"method":"GET","url":"http://localhost:8081/sistema-pedidos/api/v1/anulaciones"}},
+    {"name":"Listar pedidos y estado","request":{"method":"GET","url":"http://localhost:8081/sistema-pedidos/api/v1/pedidos"}}
+  ]
+}

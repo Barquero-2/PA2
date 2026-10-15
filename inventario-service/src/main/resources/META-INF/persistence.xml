@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+ <persistence-unit name="InventarioPU" transaction-type="JTA">
+  <jta-data-source>java:/jdbc/InventarioDS</jta-data-source>
+  <class>pe.edu.isil.inventario.domain.ProductoInventario</class>
+  <properties><property name="jakarta.persistence.schema-generation.database.action" value="none"/></properties>
+ </persistence-unit>
+</persistence>
